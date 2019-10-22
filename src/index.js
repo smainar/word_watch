@@ -10,4 +10,22 @@ $(document).ready(() => {
       console.log(error)
     }
   })
+
+  $('#reveal-yourself').click(function() {
+    let input = $('#input').val();
+
+  $.ajax({
+      method: 'POST',
+      url: 'https://wordwatch-api.herokuapp.com/api/v1/words',
+      contentType: 'application/json',
+      data: JSON.stringify({ word: { value: `${input}` } } ),
+      success: function(response) {
+        $('#input').val('')
+        alert(`You added ${input} successfully!`)
+      },
+      error: function(error) {
+        console.log(error)
+      }
+    })
+  })
 })
